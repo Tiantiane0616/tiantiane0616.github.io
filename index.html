@@ -1,54 +1,172 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
-
 <head>
-    <link rel="icon" href="picture/tte.ico" type="tte.ico">
-    <!没有指向>
-    <title>
-        Tiantiane的屑网站
-    </title>
-</head>
-
-<body>
+    <!-- 设置网站图标 -->
+    <link rel="icon" href="picture/tte.ico" type="image/x-icon">
+    <!-- 设置网页标题 -->
+    <title>Tiantiane的屑网站</title>
+    <!-- 设置网页背景图片和样式 -->
     <style>
         body {
-         background-image: url("picture/background.png");
-         background-size: 30% ;
-         background-attachment: fixed;
-         background-repeat: repeat;
-         background-position: left top;
-        } 
-    </style>
-    <div class="Sticky ColumnPageHeader is-fixed css-1l12z7y" style="width: 1000px; top: 0px; left: 0px;">
-       <img src="picture/head.png" alt="天天饿的屑网站（看到这个时应该想想为什么放不了图片...）" 
-           width="3185"
-           height="144"
-        />
-    <h1>这是一个什么也没有用の屑网站（悲）
-    </div>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <h3>
-        <a href="index.html">刷新</a><br>
-        感谢使用<br>
-    </h3>
-</body>
+            background-image: url("picture/background.png");
+            background-size: cover;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-position: center center;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        /* 设置导航栏样式 */
+ /* 基础样式 */
+body {
+    font-size: 16px; /* 基础字体大小 */
+    line-height: 1; /* 基础行高 */
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
 
+/* 媒体查询：当屏幕宽度大于或等于2000px时 */
+@media screen and (min-width: 2000px) {
+    body {
+        font-size: 32px; /* 字体大小增加2倍 */
+        line-height: 2; /* 行高增加2倍 */
+    }
+}
+
+/* 媒体查询：当屏幕宽度在1080px到1999px之间时 */
+@media screen and (min-width: 1080px) and (max-width: 1999px) {
+    body {
+        font-size: 24px; /* 字体大小增加1.5倍 */
+        line-height: 1.5; /* 行高增加1.5倍 */
+    }
+}
+
+/* 媒体查询：当屏幕宽度在768px到1079px之间时 */
+@media screen and (min-width: 768px) and (max-width: 1079px) {
+    body {
+        font-size: 18px; /* 字体大小增加1.125倍 */
+        line-height: 1.125; /* 行高增加1.125倍 */
+    }
+}
+
+/* 媒体查询：当屏幕宽度小于768px时（手机屏幕） */
+@media screen and (max-width: 767px) {
+    body {
+        font-size: 14px; /* 字体大小保持不变 */
+        line-height: 1; /* 行高保持不变 */
+    }
+}
+
+/* 设置导航栏样式 */
+.Sticky.ColumnPageHeader.is-fixed.css-1l12z7y {
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: #f8f8f8;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    z-index: 1000;
+    padding: 10px 0; /* 增加内边距以适应内容 */
+}
+
+/* 设置导航栏内图片样式 */
+.Sticky.ColumnPageHeader.is-fixed.css-1l12z7y img {
+    max-width: 100%; /* 图片最大宽度占满导航栏 */
+    height: auto; /* 图片高度自动调整 */
+}
+
+/* 设置导航栏内标题样式 */
+.Sticky.ColumnPageHeader.is-fixed.css-1l12z7y h1,
+.Sticky.ColumnPageHeader.is-fixed.css-1l12z7y h3 {
+    margin: 0;
+    padding: 10px;
+    text-align: center;
+}
+
+/* 设置第一句话显示样式 */
+.word h1 {
+    text-align: left;
+    padding: 15px;
+    font-size: 48px;
+    color: #1e1e1e;
+}
+
+/* 设置时间显示样式 */
+#time {
+    text-align: left;
+    padding: 15px;
+    font-size: 30px;
+    color: #333;
+}
+
+/* 设置页脚样式 */
+footer {
+    background-color: rgb(142, 241, 223);
+    padding: 20px;
+    text-align: center;
+}
+
+/* 设置版权信息样式 */
+.Copyright {
+    margin: 10px 0;
+}
+
+.Copyright p {
+    font-size: 20px;
+    color: #888;
+}
+
+/* 设置返回顶部链接样式 */
+.footer-back-to-top a {
+    text-decoration: none;
+    color: #333;
+    font-size: 18px;
+}
+
+.footer-back-to-top a:hover {
+    text-decoration: underline;
+}
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <div class="Sticky ColumnPageHeader is-fixed css-1l12z7y">
+        <img src="picture/head.png" alt="天天饿的屑网站（看到这个时应该想想为什么放不了图片...）" />
+        <h1>天天饿的屑网站（悲）</h1>
+        <h3>Tiantian's Worthless Website</h3>
+    </div>
+    <div class="word">
+        <h1>这是一个什么也没有用の屑网站（悲）</h1>
+    </div>
+    <!-- 时间显示 -->
+    <div id="time"></div>
+
+    <!-- 页脚 -->
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <img src="https://tool.lu/netcard/">
+    <footer>
+        <div class="footer-back-to-top">
+            <a href="#top">返回顶部</a>
+        </div>
+        <div class="Copyright">
+            <p>©Copyright_Tiantiane</p>
+        </div>
+    </footer>
+    <!-- JavaScript代码 -->
+    <script type="text/javascript">
+        function time() {
+            var vWeek, vWeek_s, vDay;
+            vWeek = ["星期天", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
+            var date = new Date();
+            var year = date.getFullYear();
+            var month = date.getMonth() + 1;
+            var day = date.getDate();
+            var hours = date.getHours();
+            var minutes = date.getMinutes();
+            var seconds = date.getSeconds();
+            vWeek_s = date.getDay();
+            document.getElementById("time").innerHTML = "小饿提醒您_现在是:" + year + "年" + month + "月" + day + "日" + "\t" + hours + ":" + minutes + ":" + seconds + "\t" + vWeek[vWeek_s];
+        }
+        setInterval(time, 1000); // 每秒更新时间
+    </script>
+</body>
 </html>
