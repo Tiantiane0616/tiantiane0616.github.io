@@ -17,59 +17,40 @@
             margin: 0;
             font-family: Arial, sans-serif;
             color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
         /* 导航栏样式 */
         .Sticky.ColumnPageHeader.is-fixed {
             width: 100%;
-            top: 0;
-            left: 0;
-            background-color: #f8f8f8;
+            background-color: rgba(248, 248, 248, 0.9);
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
             z-index: 1000;
             padding: 10px 0;
             text-align: center;
+            position: fixed;
+            top: 0;
+            left: 0;
         }
 
         .Sticky.ColumnPageHeader.is-fixed img {
             max-width: 100px; /* 根据需要调整Logo大小 */
             height: auto;
+            margin-bottom: 10px;
         }
 
         .Sticky.ColumnPageHeader.is-fixed h1,
         .Sticky.ColumnPageHeader.is-fixed h3 {
             margin: 0;
-            padding: 10px;
-        }
-
-        /* 响应式设计 */
-        @media screen and (min-width: 2000px) {
-            body {
-                font-size: 32px;
-            }
-        }
-
-        @media screen and (min-width: 1080px) and (max-width: 1999px) {
-            body {
-                font-size: 24px;
-            }
-        }
-
-        @media screen and (min-width: 768px) and (max-width: 1079px) {
-            body {
-                font-size: 18px;
-            }
-        }
-
-        @media screen and (max-width: 767px) {
-            body {
-                font-size: 14px;
-            }
+            padding: 0 10px;
         }
 
         /* 主要内容样式 */
         .content {
-            padding: 20px;
+            flex: 1;
+            padding: 80px 20px 20px 20px; /* 为导航栏留出空间 */
             text-align: center;
         }
 
@@ -79,19 +60,25 @@
         }
 
         .content a {
-            display: block;
-            margin: 10px 0;
+            display: inline-block;
+            margin: 10px 5px;
+            padding: 10px 20px;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
             text-decoration: none;
             color: #1e1e1e;
+            transition: background-color 0.3s, color 0.3s;
         }
 
         .content a:hover {
-            text-decoration: underline;
+            background-color: #1e1e1e;
+            color: #fff;
         }
 
         /* 页脚样式 */
         footer {
-            background-color: rgb(142, 241, 223);
+            background-color: rgba(142, 241, 223, 0.9);
             padding: 20px;
             text-align: center;
             color: #333;
@@ -116,6 +103,40 @@
             font-size: 16px;
             color: #666;
         }
+
+        /* 按钮样式 */
+        .button {
+            display: inline-block;
+            margin: 20px 0;
+            padding: 15px 30px;
+            background-color: #333;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.2em;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #555;
+        }
+
+        /* 响应式设计 */
+        @media screen and (max-width: 768px) {
+            .Sticky.ColumnPageHeader.is-fixed img {
+                max-width: 80px;
+            }
+
+            .content a {
+                padding: 8px 16px;
+                font-size: 0.9em;
+            }
+
+            .button {
+                padding: 12px 25px;
+                font-size: 1em;
+            }
+        }
     </style>
 </head>
 <body>
@@ -129,11 +150,13 @@
     <!-- 主要内容 -->
     <div class="content">
         <h1>这是一个什么也没有用の屑网站（悲）</h1>
-        <a href="dev/index.html">啥也不是发布页</a>
-        <a href="card/index.html">全网低价电话流量卡</a>
-        <a href="daishua/index.html">全网低价小饿社媒工具(代刷-低价会员买赞买流量等等)</a>
+        <a href="dev/index.html" class="button" aria-label="跳转到啥也不是发布页">啥也不是发布页</a>
+        <a href="card/index.html" class="button" aria-label="跳转到全网低价电话流量卡">全网低价电话流量卡</a>
+        <a href="daishua/index.html" class="button" aria-label="跳转到全网低价小饿社媒工具">全网低价小饿社媒工具</a>
         <br>
         <img src="card/llk.jpg" alt="流量卡图片" height="300px">
+        <br>
+        <a href="http://www.freecdn.pw/?zzwz" class="button" aria-label="跳转到小饿工作室">跳转到小饿工作室</a>
     </div>
 
     <!-- 时间显示 -->
@@ -142,12 +165,12 @@
     <!-- 页脚 -->
     <footer>
         <div class="footer-back-to-top">
-            <a href="#top">返回顶部</a>
+            <a href="#top" aria-label="返回顶部">返回顶部</a>
         </div>
         <div class="Copyright">
             <p>©Copyright_Tiantiane</p>
             <h5>
-                <a target="_blank" href="http://www.freecdn.pw/?zzwz" title="免费云加速（FreeCDN），为您免费提供网站加速和网站防御（DDOS、CC攻击）" alt="免费云加速（FreeCDN），为您免费提供网站加速和网站防御（DDOS、CC攻击）">本站由免费云加速（FreeCDN）提供网站加速和攻击防御服务</a>
+                <a target="_blank" href="http://www.freecdn.pw/?zzwz" title="免费云加速（FreeCDN），为您免费提供网站加速和网站防御（DDOS、CC攻击）" aria-label="免费云加速（FreeCDN），为您免费提供网站加速和网站防御（DDOS、CC攻击）">本站由免费云加速（FreeCDN）提供网站加速和攻击防御服务</a>
             </h5>
         </div>
     </footer>
