@@ -5,364 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>作品展示 | 天天饿Tiantiane</title>
     <link rel="icon" href="../assets/favicon.ico" type="image/x-icon">
-    <style>
-        /* 复用主站设计系统 */
-        :root {
-            --primary: #6366f1;
-            --secondary: #10b981;
-            --background: #ffffff;
-            --surface: #f8fafc;
-            --text: #1e293b;
-            --text-secondary: #64748b;
-            --radius: 12px;
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        [data-theme="dark"] {
-            --background: #0f172a;
-            --surface: #1e293b;
-            --text: #f8fafc;
-            --text-secondary: #94a3b8;
-        }
- /* 设计系统 */
-        :root {
-            --primary: #6366f1;
-            --primary-hover: #4f46e5;
-            --secondary: #10b981;
-            --background: #ffffff;
-            --surface: #f8fafc;
-            --text: #1e293b;
-            --text-secondary: #64748b;
-            --shadow: 0 1px 3px rgba(0,0,0,0.12);
-            --radius: 12px;
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --background: #0f172a;
-                --surface: #1e293b;
-                --text: #f8fafc;
-                --text-secondary: #94a3b8;
-            }
-        }
-
-        [data-theme="dark"] {
-            --background: #0f172a;
-            --surface: #1e293b;
-            --text: #f8fafc;
-            --text-secondary: #94a3b8;
-        }
-
-        /* 基础样式 */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter Variable', system-ui, sans-serif;
-            background: var(--background);
-            color: var(--text);
-            line-height: 1.6;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* 导航栏 */
-        .navbar {
-            padding: 1rem 2rem;
-            background: rgba(var(--surface-rgb), 0.8);
-            backdrop-filter: blur(8px);
-            box-shadow: var(--shadow);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .brand h1 {
-            font-size: 1.5rem;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        /* 主题切换按钮 */
-        .theme-switcher {
-            padding: 0.8rem 1.2rem;
-            background: var(--secondary);
-            color: var(--surface);
-            border-radius: var(--radius);
-            cursor: pointer;
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .theme-switcher:hover {
-            transform: scale(1.02);
-            background: var(--primary-hover);
-        }
-
-        /* 主要内容 */
-        main {
-            flex: 1;
-            padding: 4rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            width: 100%;
-        }
-
-        .hero {
-            text-align: center;
-            margin-bottom: 4rem;
-            position: relative;
-            overflow: hidden;
-            padding: 4rem 0;
-            border-radius: var(--radius);
-            background: linear-gradient(45deg, var(--surface), var(--background));
-        }
-
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            line-height: 1.2;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero p {
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto 2rem;
-        }
-
-        /* 功能卡片 */
-        .card-grid {
-            display: grid;
-            gap: 2rem;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        }
-
-        .card {
-            background: var(--surface);
-            padding: 2rem;
-            border-radius: var(--radius);
-            transition: var(--transition);
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(
-                120deg,
-                transparent,
-                rgba(255,255,255,0.1),
-                transparent
-            );
-            transition: var(--transition);
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
-        }
-
-        .card:hover::before {
-            left: 100%;
-        }
-
-        .card h3 {
-            margin-bottom: 1rem;
-            color: var(--primary);
-        }
-
-        .card p {
-            color: var(--text-secondary);
-        }
-
-        /* 时间组件 */
-        .time-container {
-            background: var(--surface);
-            padding: 1.5rem;
-            border-radius: var(--radius);
-            text-align: center;
-            margin: 2rem 0;
-            position: relative;
-        }
-
-        .time-container::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: var(--radius);
-            border: 2px solid transparent;
-            background: linear-gradient(45deg, var(--primary), var(--secondary)) border-box;
-            -webkit-mask: 
-                linear-gradient(#fff 0 0) padding-box, 
-                linear-gradient(#fff 0 0);
-            mask: 
-                linear-gradient(#fff 0 0) padding-box, 
-                linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-        }
-
-        /* 页脚 */
-        footer {
-            background: var(--surface);
-            padding: 2rem;
-            text-align: center;
-            margin-top: auto;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            margin-bottom: 1rem;
-        }
-
-        .social-link {
-            color: var(--text-secondary);
-            transition: var(--transition);
-            text-decoration: none;
-        }
-
-        .social-link:hover {
-            color: var(--primary);
-            transform: translateY(-2px);
-        }
-
-        /* 作品页面专用样式 */
-        .portfolio-header {
-            text-align: center;
-            padding: 4rem 0;
-            background: linear-gradient(45deg, var(--surface), var(--background));
-        }
-
-        .portfolio-grid {
-            display: grid;
-            gap: 2rem;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            padding: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .project-card {
-            background: var(--surface);
-            border-radius: var(--radius);
-            overflow: hidden;
-            transition: var(--transition);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        }
-
-        .project-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .project-image {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-bottom: 3px solid var(--primary);
-        }
-
-        .project-content {
-            padding: 1.5rem;
-        }
-
-        .project-title {
-            font-size: 1.5rem;
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-        }
-
-        .project-tags {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-            margin-bottom: 1rem;
-        }
-
-        .project-tag {
-            background: rgba(var(--primary-rgb), 0.1);
-            color: var(--primary);
-            padding: 0.3rem 0.7rem;
-            border-radius: 20px;
-            font-size: 0.8em;
-        }
-
-        .project-actions {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .project-button {
-            flex: 1;
-            padding: 0.8rem;
-            text-align: center;
-            background: var(--primary);
-            color: white;
-            border-radius: var(--radius);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .project-button.secondary {
-            background: var(--secondary);
-        }
-
-        .project-button:hover {
-            opacity: 0.9;
-            transform: translateY(-2px);
-        }
-
-        /* 响应式设计 */
-        @media (max-width: 768px) {
-            .portfolio-grid {
-                grid-template-columns: 1fr;
-                padding: 1rem;
-            }
-            
-            .project-actions {
-                flex-direction: column;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- 导航栏（与主站一致） -->
+    <!-- 导航栏 -->
     <nav class="navbar">
         <div class="brand">
             <h1>作品展示</h1>
         </div>
-        <div class="theme-switcher" onclick="toggleTheme()">
-            切换主题
-        </div>
+        <button class="theme-switcher" aria-label="切换主题" onclick="toggleTheme()">切换主题</button>
     </nav>
 
     <!-- 内容区域 -->
@@ -375,7 +26,7 @@
         <div class="portfolio-grid">
             <!-- 项目1 -->
             <article class="project-card">
-                <img src="../assets/projects/project1.jpg" alt="mmmmm" class="project-image" loading="lazy">
+                <img src="../assets/projects/project1.jpg" alt="演示应用" class="project-image" loading="lazy">
                 <div class="project-content">
                     <h3 class="project-title">演示应用</h3>
                     <div class="project-tags">
@@ -391,16 +42,17 @@
                 </div>
             </article>
 
-
+            <!-- 更多项目 -->
+            <!-- ... -->
         </div>
     </main>
 
-    <!-- 页脚（与主站一致） -->
+    <!-- 页脚 -->
     <footer>
         <div class="social-links">
             <a href="../tiantiane0616.github.io" class="social-link" target="_blank" rel="noopener">返回主站</a>
             <a href="https://space.bilibili.com/1726739884" class="social-link" target="_blank" rel="noopener">Bilibili</a>
-            <a href="https://www.douyin.com/user/MS4wLjABAAAAXlONsJTEMEADWOrtsaqf2bAvr6xPMZgnadho-ATL7kc?from_tab_name=main" class="social-link" target="_blank" rel="noopener">抖音</a>
+            <a href="https://www.douyin.com/user/MS4wLjABAAAAXlONsJTEMEADWOrtsaqf2bAvr6xPMZgnadho-ATL7kc" class="social-link" target="_blank" rel="noopener">抖音</a>
             <a href="mailto:tiantiane0616@126.com" class="social-link">Email</a>
             <a href="https://gitee.com/tiantiane" class="social-link" target="_blank" rel="noopener">Gitee</a>
             <a href="https://github.com/tiantiane0616" class="social-link" target="_blank" rel="noopener">GitHub</a>
@@ -408,22 +60,6 @@
         <p>&copy; 2024-2025 天天饿Tiantiane. 保留所有权利</p>
     </footer>
 
-    <script>
-        // 复用主站主题切换逻辑
-        function toggleTheme() {
-            const currentTheme = document.documentElement.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            document.documentElement.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-        }
-
-        // 初始化主题
-        function initTheme() {
-            const savedTheme = localStorage.getItem('theme') || 
-                (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-            document.documentElement.setAttribute('data-theme', savedTheme);
-        }
-        initTheme();
-    </script>
+    <script src="scripts.js"></script>
 </body>
 </html>
