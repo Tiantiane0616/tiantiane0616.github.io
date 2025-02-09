@@ -1,49 +1,125 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
-    <!-- 设置网站图标 -->
-    <link rel="icon" href="https://via.placeholder.com/16" type="image/x-icon">
-    <!-- 设置网页标题 -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>天天饿の屑网站 - 发布页</title>
-    <!-- 设置网页背景图片和样式 -->
     <style>
-        body {
-            background-image: url("https://via.placeholder.com/1920x1080");
-            background-size: cover;
-            background-attachment: fixed;
-            background-repeat: no-repeat;
-            background-position: center center;
+        * {
             margin: 0;
-            font-family: Arial, sans-serif;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Source Sans Pro', Arial, sans-serif;
         }
-        h1, h3 {
-            color: #333;
+
+        body {
+            background-color: #f5f5f7;
+        }
+
+        header {
             text-align: center;
-            margin: 20px 0;
+            padding: 2rem;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .download-section {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .download-link {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        .download-link:hover {
+            transform: translateY(-3px);
+        }
+
+        h3 {
+            color: #666;
+            font-size: 1.2rem;
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+
+        .section {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
         a {
             color: #007bff;
             text-decoration: none;
         }
+
         a:hover {
             text-decoration: underline;
+        }
+
+        .back-link {
+            display: block;
+            margin-top: 2rem;
+            color: #666;
         }
     </style>
 </head>
 <body>
-    <h1>
-        <a href="https://creation.codemao.cn/434/C63777D81F73487290A94567FE222239/小饿卡铺v1.2.4.apk">小饿卡铺v1.2.4</a>
-    </h1>
-    <h3>超低价流量/电话卡官方正规售卖平台</h3>
-    <h3><a href="../index.html">[IOS和不方便下载软件的看过来] 全网低价官网直达</a></h3>
-    <h1>
-        <a href="https://creation.codemao.cn/434/5477DAF6C781401AA8730C8B3F395484/XiaoERGB.apk">小饿RGBA工具（XiaoE RGB）v1.0.1</a>
-    </h1>
+    <header>
+        <h1>天天饿の屑网站</h1>
+    </header>
 
-    <h1>
-        <a href="../daishua/index.html">小饿社媒工具v1.1.1</a>
-    </h1>
-        <h3>刷赞刷流量低价内部破解会员</h3>
-                <h2><br><a href="../index.html">回到主页面</a><br>
+    <div class="container">
+        <section class="section">
+            <h1>最新版本下载</h1>
+            <div class="download-section">
+                <a href="https://creation.codemao.cn/434/C63777D81F73487290A94567FE222239/小饿卡铺v1.2.4.apk" class="download-link">
+                    小饿卡铺 v1.2.4
+                </a>
+            </div>
+
+            <h1>工具版本</h1>
+            <div class="download-section">
+                <a href="https://creation.codemao.cn/434/5477DAF6C781401AA8730C8B3F395484/XiaoERGB.apk" class="download-link">
+                    小饿RGBA工具 v1.0.1
+                </a>
+            </div>
+
+            <h2>小饿社媒工具</h2>
+            <h3>刷赞刷流量低价内部破解会员</h3>
+            <div class="download-section">
+                <a href="../daishua/index.html" class="download-link">
+                    小饿社媒工具 v1.1.1
+                </a>
+            </div>
+
+            <div class="back-link">
+                <a href="../index.html">回到主页面</a>
+            </div>
+        </section>
+    </div>
 </body>
 </html>
