@@ -1,0 +1,246 @@
+/* 设计系统 */
+:root {
+    --primary: #6366f1;
+    --primary-hover: #4f46e5;
+    --secondary: #10b981;
+    --background: #ffffff;
+    --surface: #f8fafc;
+    --text: #1e293b;
+    --text-secondary: #64748b;
+    --shadow: 0 1px 3px rgba(0,0,0,0.12);
+    --radius: 12px;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background: #0f172a;
+        --surface: #1e293b;
+        --text: #f8fafc;
+        --text-secondary: #94a3b8;
+    }
+}
+
+[data-theme="dark"] {
+    --background: #0f172a;
+    --surface: #1e293b;
+    --text: #f8fafc;
+    --text-secondary: #94a3b8;
+}
+
+/* 基础样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter Variable', system-ui, sans-serif;
+    background: var(--background);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 导航栏 */
+.navbar {
+    padding: 1rem 2rem;
+    background: rgba(var(--surface-rgb), 0.8);
+    backdrop-filter: blur(8px);
+    box-shadow: var(--shadow);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand h1 {
+    font-size: 1.5rem;
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.theme-switcher {
+    padding: 0.8rem 1.2rem;
+    background: var(--secondary);
+    color: var(--surface);
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.theme-switcher:hover {
+    transform: scale(1.02);
+    background: var(--primary-hover);
+}
+
+/* 主要内容 */
+main {
+    flex: 1;
+    padding: 4rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.hero {
+    text-align: center;
+    margin-bottom: 4rem;
+    position: relative;
+    overflow: hidden;
+    padding: 4rem 0;
+    border-radius: var(--radius);
+    background: linear-gradient(45deg, var(--surface), var(--background));
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero p {
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto 2rem;
+}
+
+/* 功能卡片 */
+.card-grid {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.card {
+    background: var(--surface);
+    padding: 2rem;
+    border-radius: var(--radius);
+    transition: var(--transition);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255,255,255,0.1),
+        transparent
+    );
+    transition: var(--transition);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+}
+
+.card:hover::before {
+    left: 100%;
+}
+
+.card h3 {
+    margin-bottom: 1rem;
+    color: var(--primary);
+}
+
+.card p {
+    color: var(--text-secondary);
+}
+
+/* 时间组件 */
+.time-container {
+    background: var(--surface);
+    padding: 1.5rem;
+    border-radius: var(--radius);
+    text-align: center;
+    margin: 2rem 0;
+    position: relative;
+}
+
+.time-container::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius);
+    border: 2px solid transparent;
+    background: linear-gradient(45deg, var(--primary), var(--secondary)) border-box;
+    -webkit-mask: 
+        linear-gradient(#fff 0 0) padding-box, 
+        linear-gradient(#fff 0 0);
+    mask: 
+        linear-gradient(#fff 0 0) padding-box, 
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+}
+
+/* 页脚 */
+footer {
+    background: var(--surface);
+    padding: 2rem;
+    text-align: center;
+    margin-top: auto;
+}
+
+.social-links {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.social-link {
+    color: var(--text-secondary);
+    transition: var(--transition);
+    text-decoration: none;
+}
+
+.social-link:hover {
+    color: var(--primary);
+    transform: translateY(-2px);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    main {
+        padding: 2rem 1rem;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .navbar {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+    }
+}
