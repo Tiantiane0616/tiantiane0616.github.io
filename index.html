@@ -79,6 +79,23 @@
             -webkit-text-fill-color: transparent;
         }
 
+        /* 主题切换按钮 */
+        .theme-switcher {
+            padding: 0.8rem 1.2rem;
+            background: var(--secondary);
+            color: var(--surface);
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .theme-switcher:hover {
+            transform: scale(1.02);
+            background: var(--primary-hover);
+        }
+
         /* 主要内容 */
         main {
             flex: 1;
@@ -244,6 +261,10 @@
         <div class="brand">
             <h1>天天饿Tiantiane</h1>
         </div>
+        <!-- 主题切换按钮 -->
+        <div class="theme-switcher" onclick="toggleTheme()">
+            🌘 / 🌞 (切换主题)
+        </div>
     </nav>
 
     <main>
@@ -282,7 +303,10 @@
 
     <footer>
         <div class="social-links">
+            <a href="https://www.douyin.com/user/MS4wLjABAAAAXlONsJTEMEADWOrtsaqf2bAvr6xPMZgnadho-ATL7kc?from_tab_name=main" class="social-link">抖音</a>
             <a href="mailto:tiantiane0616@126.com" class="social-link">Email</a>
+            <a href="https://gitee.com/tiantiane" class="social-link">Gitte</a>
+            <a href="https://github.com/tiantiane0616" class="social-link">GitHub</a>
         </div>
         <p>&copy; ©2024-2025 天天饿Tiantiane. 持续进化中...</p>
     </footer>
@@ -316,6 +340,13 @@
         setInterval(renderTime, 1000);
 
         // 主题切换
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', newTheme);
+        }
+
+        // 自动检测系统主题偏好
         function detectColorScheme() {
             const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 
                 'dark' : 'light';
