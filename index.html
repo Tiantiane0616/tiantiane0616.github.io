@@ -3,17 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tiantiane的屑网站</title>
+    <title>Tiantiane的网站</title>
     <link rel="icon" href="picture/tte.ico" type="image/x-icon">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1391624694281614" crossorigin="anonymous"></script>
     <style>
+        /* 全局样式 */
         :root {
-            --primary-color: #2A5CAA;
-            --secondary-color: #3B82F6;
-            --accent-color: #10B981;
-            --dark-color: #1F2937;
-            --light-color: #F9FAFB;
-            --background-image: url("picture/background.png");
+            --primary-color: #2563eb; /* 主色调 */
+            --secondary-color: #1e40af; /* 次色调 */
+            --accent-color: #10b981; /* 强调色 */
+            --background-color: #f8fafc; /* 背景色 */
+            --text-color: #1e293b; /* 文字颜色 */
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         }
 
         * {
@@ -24,208 +25,219 @@
         }
 
         body {
-            background-image: var(--background-image);
-            background-size: cover;
-            background-attachment: fixed;
-            background-position: center center;
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            color: var(--dark-color);
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            min-height: 100vh;
         }
 
-        /* 导航栏样式 */
-        .Sticky.ColumnPageHeader.is-fixed {
-            width: 100%;
-            background-color: rgba(248, 248, 248, 0.95);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-            padding: 15px 0;
-            text-align: center;
-            position: fixed;
+        /* 导航栏 */
+        header {
+            background-color: white;
+            box-shadow: var(--shadow);
+            padding: 1rem 2rem;
+            position: sticky;
             top: 0;
-            left: 0;
-        }
-
-        .Sticky.ColumnPageHeader.is-fixed h1,
-        .Sticky.ColumnPageHeader.is-fixed h3 {
-            margin: 0;
-            padding: 0 10px;
-            color: var(--primary-color);
-        }
-
-        /* 主要内容样式 */
-        .content {
-            flex: 1;
-            padding: 120px 20px 20px 20px;
+            z-index: 1000;
             text-align: center;
-            background-color: rgba(255, 255, 255, 0.9);
-            margin: 80px 20px 20px 20px;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
 
-        .content h1 {
-            font-size: 2.2em;
-            margin-bottom: 30px;
+        header h1 {
+            font-size: 1.8rem;
             color: var(--primary-color);
+            margin-bottom: 0.5rem;
         }
 
-        .button-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            justify-content: center;
-            margin: 30px 0;
+        header h3 {
+            font-size: 1.2rem;
+            color: var(--text-color);
+            opacity: 0.8;
+        }
+
+        /* 主要内容 */
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-color);
+            opacity: 0.8;
+            margin-bottom: 2rem;
+        }
+
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
         }
 
         .button {
-            display: inline-flex;
+            display: flex;
             align-items: center;
             justify-content: center;
-            padding: 15px 30px;
-            background-color: var(--primary-color);
-            color: white;
+            padding: 1.5rem;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
             text-decoration: none;
-            border-radius: 8px;
-            font-size: 1.1em;
-            transition: all 0.3s;
-            min-width: 200px;
+            color: var(--text-color);
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
         }
 
         .button:hover {
-            background-color: var(--secondary-color);
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            background-color: var(--primary-color);
+            color: white;
         }
 
         .button.secondary {
             background-color: var(--accent-color);
+            color: white;
         }
 
         .button.secondary:hover {
             background-color: #0ea472;
         }
 
-        .content img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
-            margin: 20px 0;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        .image-section {
+            text-align: center;
+            margin-bottom: 3rem;
         }
 
-        /* 页脚样式 */
-        footer {
-            background-color: rgba(142, 241, 223, 0.95);
-            padding: 20px;
+        .image-section img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+
+        /* 时间显示 */
+        #time {
             text-align: center;
-            color: var(--dark-color);
+            padding: 1rem;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+            color: var(--text-color);
+        }
+
+        /* 页脚 */
+        footer {
+            background-color: white;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: var(--shadow);
             margin-top: auto;
         }
 
-        .footer-back-to-top a {
-            text-decoration: none;
+        footer a {
             color: var(--primary-color);
-            font-size: 1.1em;
-            transition: color 0.3s;
+            text-decoration: none;
+            font-weight: 500;
         }
 
-        .footer-back-to-top a:hover {
-            color: var(--secondary-color);
+        footer a:hover {
             text-decoration: underline;
         }
 
-        .Copyright {
-            margin: 10px 0;
-        }
-
-        .Copyright p {
-            font-size: 0.9em;
-            color: #666;
-        }
-
-        /* 时间显示样式 */
-        #time {
-            padding: 15px;
-            background-color: rgba(255, 255, 255, 0.9);
-            border-radius: 8px;
-            margin: 20px auto;
-            width: fit-content;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            font-size: 1.1em;
+        .copyright {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: var(--text-color);
+            opacity: 0.8;
         }
 
         /* 响应式设计 */
-        @media screen and (max-width: 768px) {
-            .content {
-                padding: 100px 15px 15px 15px;
-                margin: 60px 10px 10px 10px;
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.5rem;
             }
 
-            .content h1 {
-                font-size: 1.8em;
+            header h3 {
+                font-size: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
             }
 
             .button {
-                padding: 12px 25px;
-                font-size: 1em;
-                min-width: 160px;
+                padding: 1rem;
+                font-size: 1rem;
             }
 
             #time {
-                font-size: 0.9em;
-                padding: 10px;
-            }
-        }
-
-        @media screen and (max-width: 480px) {
-            .content {
-                padding: 80px 10px 10px 10px;
-            }
-
-            .content h1 {
-                font-size: 1.5em;
-            }
-
-            .button {
-                width: 100%;
+                font-size: 1rem;
             }
         }
     </style>
 </head>
 <body>
     <!-- 导航栏 -->
-    <div class="Sticky ColumnPageHeader is-fixed">
-        <h1>天天饿的屑网站（悲）</h1>
-        <h3>Tiantian's Worthless Website</h3>
-    </div>
+    <header>
+        <h1>天天饿的网站</h1>
+        <h3>Tiantian's Website</h3>
+    </header>
 
     <!-- 主要内容 -->
-    <div class="content">
-        <h1>这是一个什么也没有用の屑网站（悲）</h1>
-        <div class="button-container">
+    <main>
+        <!-- 欢迎语 -->
+        <section class="hero">
+            <h1>欢迎来到我的网站</h1>
+            <p>这里是一个充满创意和实用工具的地方，希望你能找到你需要的内容！</p>
+        </section>
+
+        <!-- 按钮网格 -->
+        <div class="button-grid">
             <a href="dev/index.html" class="button" aria-label="跳转到啥也不是发布页">啥也不是发布页</a>
             <a href="card/index.html" class="button secondary" aria-label="跳转到全网低价电话流量卡">全网低价电话流量卡</a>
             <a href="daishua/index.html" class="button" aria-label="跳转到全网低价小饿社媒工具">全网低价小饿社媒工具</a>
-        </div>
-        <img src="card/llk.jpg" alt="流量卡图片" loading="lazy">
-        <div class="button-container">
             <a href="https://xiaoews.github.io/" class="button secondary" aria-label="跳转到小饿工作室">跳转到小饿工作室</a>
         </div>
-    </div>
 
-    <!-- 时间显示 -->
-    <div id="time"></div>
+        <!-- 图片展示 -->
+        <section class="image-section">
+            <img src="card/llk.jpg" alt="流量卡图片" loading="lazy">
+        </section>
+
+        <!-- 时间显示 -->
+        <div id="time"></div>
+    </main>
 
     <!-- 页脚 -->
     <footer>
-        <div class="footer-back-to-top">
-            <a href="#top" aria-label="返回顶部">返回顶部</a>
-        </div>
-        <div class="Copyright">
-            <p>©Copyright_Tiantiane</p>
+        <a href="#top" aria-label="返回顶部">返回顶部</a>
+        <div class="copyright">
+            <p>© 2024 Tiantiane. All rights reserved.</p>
         </div>
     </footer>
 
@@ -235,8 +247,8 @@
             const vWeek = ["星期天", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
             const date = new Date();
             const year = date.getFullYear();
-            const month = date.getMonth() + 1;
-            const day = date.getDate();
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const day = String(date.getDate()).padStart(2, '0');
             const hours = String(date.getHours()).padStart(2, '0');
             const minutes = String(date.getMinutes()).padStart(2, '0');
             const seconds = String(date.getSeconds()).padStart(2, '0');
