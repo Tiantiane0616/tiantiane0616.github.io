@@ -1,24 +1,35 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1391624694281614"
-     crossorigin="anonymous"></script>
-    <!-- 设置网站图标 -->
-    <link rel="icon" href="picture/tte.ico" type="image/x-icon">
-    <!-- 设置网页标题 -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tiantiane的屑网站</title>
-    <!-- 设置网页背景图片和样式 -->
+    <link rel="icon" href="picture/tte.ico" type="image/x-icon">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1391624694281614" crossorigin="anonymous"></script>
     <style>
-        /* 基本样式 */
+        :root {
+            --primary-color: #2A5CAA;
+            --secondary-color: #3B82F6;
+            --accent-color: #10B981;
+            --dark-color: #1F2937;
+            --light-color: #F9FAFB;
+            --background-image: url("picture/background.png");
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+
         body {
-            background-image: url("picture/background.png");
+            background-image: var(--background-image);
             background-size: cover;
             background-attachment: fixed;
-            background-repeat: no-repeat;
             background-position: center center;
-            margin: 0;
-            font-family: Arial, sans-serif;
-            color: #333;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            color: var(--dark-color);
             display: flex;
             flex-direction: column;
             min-height: 100vh;
@@ -27,72 +38,102 @@
         /* 导航栏样式 */
         .Sticky.ColumnPageHeader.is-fixed {
             width: 100%;
-            background-color: rgba(248, 248, 248, 0.9);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            background-color: rgba(248, 248, 248, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             z-index: 1000;
-            padding: 10px 0;
+            padding: 15px 0;
             text-align: center;
             position: fixed;
             top: 0;
             left: 0;
         }
 
-        .Sticky.ColumnPageHeader.is-fixed img {
-            max-width: 100px; /* 根据需要调整Logo大小 */
-            height: auto;
-            margin-bottom: 10px;
-        }
-
         .Sticky.ColumnPageHeader.is-fixed h1,
         .Sticky.ColumnPageHeader.is-fixed h3 {
             margin: 0;
             padding: 0 10px;
+            color: var(--primary-color);
         }
 
         /* 主要内容样式 */
         .content {
             flex: 1;
-            padding: 80px 20px 20px 20px; /* 为导航栏留出空间 */
+            padding: 120px 20px 20px 20px;
             text-align: center;
+            background-color: rgba(255, 255, 255, 0.9);
+            margin: 80px 20px 20px 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
 
         .content h1 {
-            font-size: 2em;
-            margin-bottom: 20px;
+            font-size: 2.2em;
+            margin-bottom: 30px;
+            color: var(--primary-color);
         }
 
-        .content a {
-            display: inline-block;
-            margin: 10px 5px;
-            padding: 10px 20px;
-            background-color: #f0f0f0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
+        .button-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin: 30px 0;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px 30px;
+            background-color: var(--primary-color);
+            color: white;
             text-decoration: none;
-            color: #1e1e1e;
-            transition: background-color 0.3s, color 0.3s;
+            border-radius: 8px;
+            font-size: 1.1em;
+            transition: all 0.3s;
+            min-width: 200px;
         }
 
-        .content a:hover {
-            background-color: #1e1e1e;
-            color: #fff;
+        .button:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .button.secondary {
+            background-color: var(--accent-color);
+        }
+
+        .button.secondary:hover {
+            background-color: #0ea472;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin: 20px 0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
         /* 页脚样式 */
         footer {
-            background-color: rgba(142, 241, 223, 0.9);
+            background-color: rgba(142, 241, 223, 0.95);
             padding: 20px;
             text-align: center;
-            color: #333;
+            color: var(--dark-color);
+            margin-top: auto;
         }
 
         .footer-back-to-top a {
             text-decoration: none;
-            color: #333;
-            font-size: 18px;
+            color: var(--primary-color);
+            font-size: 1.1em;
+            transition: color 0.3s;
         }
 
         .footer-back-to-top a:hover {
+            color: var(--secondary-color);
             text-decoration: underline;
         }
 
@@ -100,43 +141,56 @@
             margin: 10px 0;
         }
 
-        .Copyright p,
-        .Copyright h5 {
-            font-size: 16px;
+        .Copyright p {
+            font-size: 0.9em;
             color: #666;
         }
 
-        /* 按钮样式 */
-        .button {
-            display: inline-block;
-            margin: 20px 0;
-            padding: 15px 30px;
-            background-color: #333;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 5px;
-            font-size: 1.2em;
-            transition: background-color 0.3s;
-        }
-
-        .button:hover {
-            background-color: #555;
+        /* 时间显示样式 */
+        #time {
+            padding: 15px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            margin: 20px auto;
+            width: fit-content;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            font-size: 1.1em;
         }
 
         /* 响应式设计 */
         @media screen and (max-width: 768px) {
-            .Sticky.ColumnPageHeader.is-fixed img {
-                max-width: 80px;
+            .content {
+                padding: 100px 15px 15px 15px;
+                margin: 60px 10px 10px 10px;
             }
 
-            .content a {
-                padding: 8px 16px;
-                font-size: 0.9em;
+            .content h1 {
+                font-size: 1.8em;
             }
 
             .button {
                 padding: 12px 25px;
                 font-size: 1em;
+                min-width: 160px;
+            }
+
+            #time {
+                font-size: 0.9em;
+                padding: 10px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .content {
+                padding: 80px 10px 10px 10px;
+            }
+
+            .content h1 {
+                font-size: 1.5em;
+            }
+
+            .button {
+                width: 100%;
             }
         }
     </style>
@@ -150,16 +204,16 @@
 
     <!-- 主要内容 -->
     <div class="content">
-        <br> 
-        <br>
         <h1>这是一个什么也没有用の屑网站（悲）</h1>
-        <a href="dev/index.html" class="button" aria-label="跳转到啥也不是发布页">啥也不是发布页</a>
-        <a href="card/index.html" class="button" aria-label="跳转到全网低价电话流量卡">全网低价电话流量卡</a>
-        <a href="daishua/index.html" class="button" aria-label="跳转到全网低价小饿社媒工具">全网低价小饿社媒工具</a>
-        <br>
-        <img src="card/llk.jpg" alt="流量卡图片" height="300px">
-        <br>
-        <a href="https://xiaoews.github.io/" class="button" aria-label="跳转到小饿工作室">跳转到小饿工作室</a>
+        <div class="button-container">
+            <a href="dev/index.html" class="button" aria-label="跳转到啥也不是发布页">啥也不是发布页</a>
+            <a href="card/index.html" class="button secondary" aria-label="跳转到全网低价电话流量卡">全网低价电话流量卡</a>
+            <a href="daishua/index.html" class="button" aria-label="跳转到全网低价小饿社媒工具">全网低价小饿社媒工具</a>
+        </div>
+        <img src="card/llk.jpg" alt="流量卡图片" loading="lazy">
+        <div class="button-container">
+            <a href="https://xiaoews.github.io/" class="button secondary" aria-label="跳转到小饿工作室">跳转到小饿工作室</a>
+        </div>
     </div>
 
     <!-- 时间显示 -->
@@ -176,23 +230,21 @@
     </footer>
 
     <!-- JavaScript代码 -->
-    <script type="text/javascript">
+    <script>
         function updateTime() {
             const vWeek = ["星期天", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
             const date = new Date();
             const year = date.getFullYear();
             const month = date.getMonth() + 1;
             const day = date.getDate();
-            const hours = date.getHours();
-            const minutes = date.getMinutes();
-            const seconds = date.getSeconds();
+            const hours = String(date.getHours()).padStart(2, '0');
+            const minutes = String(date.getMinutes()).padStart(2, '0');
+            const seconds = String(date.getSeconds()).padStart(2, '0');
             const vWeek_s = date.getDay();
-            document.getElementById("time").innerHTML = "小饿提醒您_现在是:" + year + "年" + month + "月" + day + "日\t" + hours + ":" + minutes + ":" + seconds + "\t" + vWeek[vWeek_s];
+            document.getElementById("time").innerHTML = `小饿提醒您_现在是: ${year}年${month}月${day}日 ${hours}:${minutes}:${seconds} ${vWeek[vWeek_s]}`;
         }
 
-        // 初始化时间
         updateTime();
-        // 每秒更新时间
         setInterval(updateTime, 1000);
     </script>
 </body>
