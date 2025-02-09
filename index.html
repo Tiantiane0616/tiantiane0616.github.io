@@ -96,11 +96,12 @@
             transition: var(--transition);
             background: linear-gradient(90deg, var(--primary), var(--secondary));
             color: var(--surface);
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
 
         .theme-toggle:hover {
             transform: scale(1.05);
-            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
         }
 
         .theme-icon {
@@ -260,7 +261,7 @@
         </div>
         <div class="theme-toggle" onclick="toggleTheme()">
             <i class="fas fa-sun theme-icon" id="themeIcon"></i>
-            切换主题
+            <span>切换主题</span>
         </div>
     </nav>
 
