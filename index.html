@@ -36,6 +36,13 @@
             }
         }
 
+        [data-theme="dark"] {
+            --background: #0f172a;
+            --surface: #1e293b;
+            --text: #f8fafc;
+            --text-secondary: #94a3b8;
+        }
+
         /* 基础样式 */
         * {
             margin: 0;
@@ -55,8 +62,9 @@
 
         /* 导航栏 */
         .navbar {
-            padding: 1.5rem 2rem;
-            background: var(--surface);
+            padding: 1rem 2rem;
+            background: rgba(var(--surface-rgb), 0.8);
+            backdrop-filter: blur(8px);
             box-shadow: var(--shadow);
             position: sticky;
             top: 0;
@@ -119,6 +127,9 @@
             font-size: 3rem;
             margin-bottom: 1.5rem;
             line-height: 1.2;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .hero p {
@@ -225,6 +236,7 @@
         .social-link {
             color: var(--text-secondary);
             transition: var(--transition);
+            text-decoration: none;
         }
 
         .social-link:hover {
@@ -303,10 +315,10 @@
 
     <footer>
         <div class="social-links">
-            <a href="https://www.douyin.com/user/MS4wLjABAAAAXlONsJTEMEADWOrtsaqf2bAvr6xPMZgnadho-ATL7kc?from_tab_name=main" class="social-link">抖音</a>
+            <a href="https://www.douyin.com/user/MS4wLjABAAAAXlONsJTEMEADWOrtsaqf2bAvr6xPMZgnadho-ATL7kc?from_tab_name=main" class="social-link" target="_blank" rel="noopener">抖音</a>
             <a href="mailto:tiantiane0616@126.com" class="social-link">Email</a>
-            <a href="https://gitee.com/tiantiane" class="social-link">Gitte</a>
-            <a href="https://github.com/tiantiane0616" class="social-link">GitHub</a>
+            <a href="https://gitee.com/tiantiane" class="social-link" target="_blank" rel="noopener">Gitee</a>
+            <a href="https://github.com/tiantiane0616" class="social-link" target="_blank" rel="noopener">GitHub</a>
         </div>
         <p>&copy; ©2024-2025 天天饿Tiantiane. 持续进化中...</p>
     </footer>
@@ -344,12 +356,14 @@
             const currentTheme = document.documentElement.getAttribute('data-theme');
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
             document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
         }
 
         // 自动检测系统主题偏好
         function detectColorScheme() {
-            const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 
-                'dark' : 'light';
+            const savedTheme = localStorage.getItem('theme');
+            const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            const theme = savedTheme || systemTheme;
             document.documentElement.setAttribute('data-theme', theme);
         }
 
