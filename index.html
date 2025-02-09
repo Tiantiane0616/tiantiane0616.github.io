@@ -6,14 +6,11 @@
     <title>天天饿Tiantiane | 开发者与创新者</title>
     <meta name="description" content="Tiantiane的个人网站 - 探索数字世界的无限可能">
     <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1391624694281614" crossorigin="anonymous"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1391624694281614&#34;  crossorigin="anonymous"></script>
     
     <!-- 预加载关键资源 -->
     <link rel="preload" href="assets/hero-bg.svg" as="image">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    
-    <!-- Font Awesome 的图标库 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com&#34;&gt; 
     
     <style>
         /* 设计系统 */
@@ -28,7 +25,6 @@
             --shadow: 0 1px 3px rgba(0,0,0,0.12);
             --radius: 12px;
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            --theme: light; /* 新增主题变量 */
         }
 
         @media (prefers-color-scheme: dark) {
@@ -45,17 +41,16 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter Variable', system-ui, sans-serif;
         }
 
         body {
+            font-family: 'Inter Variable', system-ui, sans-serif;
             background: var(--background);
             color: var(--text);
             line-height: 1.6;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            transition: var(--transition); /* 增加页面过渡动画 */
         }
 
         /* 导航栏 */
@@ -82,30 +77,6 @@
             background: linear-gradient(to right, var(--primary), var(--secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-        }
-
-        /* 主题切换按钮 */
-        .theme-toggle {
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-            font-size: 1rem;
-            gap: 0.5rem;
-            padding: 0.5rem 1rem;
-            border-radius: 9999px;
-            transition: var(--transition);
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            color: var(--surface);
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-
-        .theme-toggle:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 15px rgba(0,0,0,0.2);
-        }
-
-        .theme-icon {
-            font-size: 1.2rem;
         }
 
         /* 主要内容 */
@@ -156,12 +127,31 @@
             overflow: hidden;
             text-decoration: none;
             color: inherit;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                120deg,
+                transparent,
+                rgba(255,255,255,0.1),
+                transparent
+            );
+            transition: var(--transition);
         }
 
         .card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+        }
+
+        .card:hover::before {
+            left: 100%;
         }
 
         .card h3 {
@@ -181,20 +171,23 @@
             text-align: center;
             margin: 2rem 0;
             position: relative;
-            box-shadow: inset 0 0 5px rgba(0,0,0,0.05);
         }
 
         .time-container::after {
             content: '';
             position: absolute;
-            inset: -10px;
+            inset: 0;
             border-radius: var(--radius);
-            background: linear-gradient(
-                135deg,
-                rgba(255,255,255,0.5),
-                rgba(255,255,255,0.1)
-            );
-            filter: blur(10px);
+            border: 2px solid transparent;
+            background: linear-gradient(45deg, var(--primary), var(--secondary)) border-box;
+            -webkit-mask: 
+                linear-gradient(#fff 0 0) padding-box, 
+                linear-gradient(#fff 0 0);
+            mask: 
+                linear-gradient(#fff 0 0) padding-box, 
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
         }
 
         /* 页脚 */
@@ -213,21 +206,13 @@
         }
 
         .social-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
             color: var(--text-secondary);
             transition: var(--transition);
-            font-size: 1.1rem;
-            padding: 0.5rem 1rem;
-            border-radius: 9999px;
-            background: rgba(255,255,255,0.1);
         }
 
         .social-link:hover {
             color: var(--primary);
             transform: translateY(-2px);
-            background: rgba(255,255,255,0.2);
         }
 
         /* 响应式设计 */
@@ -259,10 +244,6 @@
         <div class="brand">
             <h1>天天饿Tiantiane</h1>
         </div>
-        <div class="theme-toggle" onclick="toggleTheme()">
-            <i class="fas fa-sun theme-icon" id="themeIcon"></i>
-            <span>切换主题</span>
-        </div>
     </nav>
 
     <main>
@@ -280,7 +261,7 @@
             </a>
 
             <!-- 开源项目卡片 -->
-            <a href="https://github.com/tiantiane0616" class="card">
+            <a href="https://github.com/tiantiane0616&#34;  class="card">
                 <h3>开源项目</h3>
                 <p>参与社区驱动的创新解决方案</p>
             </a>
@@ -292,7 +273,7 @@
             </a>
 
             <!-- 我的团队卡片 -->
-            <a href="https://xiaoews.github.io/" class="card">
+            <a href="https://xiaoews.github.io/&#34;  class="card">
                 <h3>我的团队</h3>
                 <p>协作 革命 创新</p>
             </a>
@@ -301,20 +282,9 @@
 
     <footer>
         <div class="social-links">
-            <a href="https://www.douyin.com/user/MS4wLjABAAAAXlONsJTEMEADWOrtsaqf2bAvr6xPMZgnadho-ATL7kc?from_tab_name=main" class="social-link">
-                <i class="fab fa-douyin"></i>
-                抖音
-            </a>
-            <a href="https://space.bilibili.com/1726739884" class="social-link">
-                <i class="fab fa-bilibili"></i>
-                B站
-            </a>
-            <a href="mailto:tiantiane0616@126.com" class="social-link">
-                <i class="fas fa-envelope"></i>
-                邮箱
-            </a>
+            <a href="mailto:tiantiane0616@126.com" class="social-link">Email</a>
         </div>
-        <p>&copy; ©2024-2025 天天饿Tiantiane. 持续进化中...</p>
+        <p>&copy; 2024-2025 天天饿Tiantiane. 持续进化中...</p>
     </footer>
 
     <script>
@@ -346,41 +316,15 @@
         setInterval(renderTime, 1000);
 
         // 主题切换
-        function toggleTheme() {
-            const currentTheme = document.documentElement.getAttribute('data-theme');
-            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-            document.documentElement.setAttribute('data-theme', newTheme);
-
-            // 更新主题切换按钮图标
-            const themeIcon = document.getElementById('themeIcon');
-            if (newTheme === 'dark') {
-                themeIcon.classList.remove('fa-sun');
-                themeIcon.classList.add('fa-moon');
-            } else {
-                themeIcon.classList.remove('fa-moon');
-                themeIcon.classList.add('fa-sun');
-            }
-        }
-
-        // 检测系统颜色偏好并设置初始主题
         function detectColorScheme() {
-            const mql = window.matchMedia('(prefers-color-scheme: dark)');
-            if (mql.matches) {
-                document.documentElement.setAttribute('data-theme', 'dark');
-                document.getElementById('themeIcon').classList.remove('fa-sun');
-                document.getElementById('themeIcon').classList.add('fa-moon');
-            } else {
-                document.documentElement.setAttribute('data-theme', 'light');
-                document.getElementById('themeIcon').classList.remove('fa-moon');
-                document.getElementById('themeIcon').classList.add('fa-sun');
-            }
+            const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 
+                'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', theme);
         }
 
         window.matchMedia('(prefers-color-scheme: dark)')
             .addEventListener('change', detectColorScheme);
 
-        // 初始化主题和按钮图标
         detectColorScheme();
     </script>
 </body>
-</html>
