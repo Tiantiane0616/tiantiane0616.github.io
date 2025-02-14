@@ -235,25 +235,135 @@ footer {
     transform: translateY(-2px);
 }
 
-/* 响应式设计 */
+
+/* 网络安全警示公告 */
+.security-alert {
+    background: rgba(255, 165, 0, 0.1);
+    border: 2px solid var(--primary);
+    border-radius: var(--radius);
+    padding: 1rem;
+    margin: 2rem 0;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.security-alert::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--primary);
+}
+
+.alert-icon {
+    flex-shrink: 0;
+    color: var(--primary);
+}
+
+.alert-text {
+    color: var(--primary);
+    font-weight: 600;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.alert-text:hover {
+    color: var(--primary-hover);
+    text-decoration: underline;
+}
+
+/* Telegram服务列表 */
+.service-list {
+    background: var(--surface);
+    border-radius: var(--radius);
+    margin: 2rem 0;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(var(--text-rgb), 0.1);
+}
+
+.service-title {
+    padding: 1.2rem 2rem;
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+    color: var(--text);
+    transition: var(--transition);
+}
+
+.dropdown-icon {
+    transition: transform 0.3s ease;
+    fill: var(--text-secondary);
+}
+
+.service-list[open] .dropdown-icon {
+    transform: rotate(180deg);
+}
+
+.service-items {
+    padding: 0 2rem;
+    border-top: 1px solid rgba(var(--text-rgb), 0.1);
+}
+
+.service-item {
+    padding: 1.2rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    border-bottom: 1px solid rgba(var(--text-rgb), 0.05);
+}
+
+.service-item:last-child {
+    border-bottom: none;
+}
+
+.service-item span {
+    color: var(--text);
+    font-size: 0.95rem;
+}
+
+.service-item a {
+    color: var(--secondary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: var(--transition);
+}
+
+.service-item a:hover {
+    color: var(--primary);
+    text-decoration: underline;
+}
+
+/* 响应式调整 */
 @media (max-width: 768px) {
-    main {
-        padding: 2rem 1rem;
-    }
-
-    .hero h1 {
-        font-size: 2rem;
-    }
-
-    .navbar {
-        flex-direction: column;
-        gap: 1rem;
+    .service-title {
         padding: 1rem;
+    }
+    
+    .service-items {
+        padding: 0 1rem;
+    }
+    
+    .service-item {
+        flex-direction: column;
     }
 }
 
-@media (prefers-reduced-motion: reduce) {
-    * {
-        transition: none !important;
+/* 暗色模式适配 */
+@media (prefers-color-scheme: dark) {
+    .security-alert {
+        background: rgba(255, 165, 0, 0.05);
     }
+}
+
+[data-theme="dark"] .security-alert {
+    background: rgba(255, 165, 0, 0.05);
 }
