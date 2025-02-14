@@ -8,8 +8,6 @@
     margin: 2rem 0;
     position: relative;
     padding: 1.5rem;
-    text-decoration: none;
-    color: inherit;
 }
 
 .warning-card:hover {
@@ -58,16 +56,13 @@
     transform: translateX(-50%);
     width: 120px;
     height: 3px;
-    background: linear-gradient(to right, #007bff, #6610f2);
+    background: linear-gradient(to right, var(--primary), var(--secondary));
 }
 
 .telegram-card {
     position: relative;
     background: rgba(0, 123, 255, 0.05);
     border: 1px solid rgba(0, 123, 255, 0.2);
-    padding: 1rem;
-    border-radius: 8px;
-    transition: transform 0.3s ease;
 }
 
 .telegram-card::before {
@@ -79,10 +74,6 @@
     font-size: 1.5rem;
 }
 
-.telegram-card:hover {
-    transform: translateY(-3px);
-}
-
 .service-list {
     list-style: none;
     margin-top: 1rem;
@@ -90,20 +81,20 @@
 
 .service-list li {
     padding: 0.3rem 0;
-    color: #6c757d;
+    color: var(--text-secondary);
     font-size: 0.9rem;
 }
 
 .telegram-link {
     display: block;
     margin-top: 1rem;
-    color: #007bff;
+    color: var(--primary);
     text-decoration: none;
-    transition: color 0.3s ease;
+    transition: var(--transition);
 }
 
 .telegram-link:hover {
-    color: #0056b3;
+    color: var(--primary-hover);
     text-decoration: underline;
 }
 
@@ -114,191 +105,12 @@
         text-align: center;
         padding: 1.5rem;
     }
-
+    
     .warning-icon {
         margin-bottom: 1rem;
     }
-
+    
     .telegram-card::before {
         display: none;
     }
-}
-
-/* 主题切换样式 */
-:root {
-    --primary: #007bff;
-    --secondary: #6610f2;
-    --text-color: #212529;
-    --text-secondary: #6c757d;
-    --transition: 0.3s ease;
-}
-
-[data-theme="light"] {
-    --primary: #007bff;
-    --secondary: #6610f2;
-    --text-color: #212529;
-    --text-secondary: #6c757d;
-    --background-color: #f8f9fa;
-    --card-background: #ffffff;
-}
-
-[data-theme="dark"] {
-    --primary: #6610f2;
-    --secondary: #007bff;
-    --text-color: #f8f9fa;
-    --text-secondary: #adb5bd;
-    --background-color: #343a40;
-    --card-background: #212529;
-}
-
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    color: var(--text-color);
-    background-color: var(--background-color);
-    transition: background-color var(--transition);
-}
-
-.background-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);
-    opacity: 0.2;
-    pointer-events: none;
-}
-
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
-    background-color: var(--card-background);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-}
-
-.brand h1 {
-    margin: 0;
-    letter-spacing: 2px;
-    color: var(--primary);
-}
-
-.theme-switcher {
-    cursor: pointer;
-    color: var(--text-secondary);
-    background: rgba(0, 0, 0, 0.1);
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    transition: background-color var(--transition);
-}
-
-.theme-switcher:hover {
-    background: rgba(0, 0, 0, 0.2);
-}
-
-.hero {
-    text-align: center;
-    padding: 4rem 2rem;
-    background: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);
-    color: var(--text-color);
-    position: relative;
-    z-index: 1;
-}
-
-.hero h1 {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-    color: var(--text-color);
-}
-
-.hero p {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
-    color: var(--text-secondary);
-}
-
-.time-container {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.5rem 1rem;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 20px;
-    font-size: 0.9rem;
-    color: var(--text-color);
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-}
-
-.card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    padding: 2rem;
-    margin: 4rem 0;
-}
-
-.card {
-    background: var(--card-background);
-    border-radius: 8px;
-    padding: 1.5rem;
-    transition: transform 0.3s ease;
-    text-decoration: none;
-    color: inherit;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.card:hover {
-    transform: translateY(-3px);
-}
-
-.card h3 {
-    margin-top: 0;
-    color: var(--primary);
-}
-
-.card p {
-    color: var(--text-secondary);
-}
-
-.warning-card {
-    margin: 4rem auto 2rem;
-    max-width: 800px;
-    padding: 2rem;
-}
-
-.telegram-services .card-grid {
-    margin: 2rem 0;
-}
-
-.footer {
-    background: var(--card-background);
-    padding: 2rem;
-    text-align: center;
-    margin-top: 4rem;
-}
-
-.social-links {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin-bottom: 1rem;
-}
-
-.social-link {
-    color: var(--text-secondary);
-    text-decoration: none;
-    transition: color var(--transition);
-}
-
-.social-link:hover {
-    color: var(--primary);
-}
-
-.footer p {
-    margin: 0;
-    color: var(--text-secondary);
 }
