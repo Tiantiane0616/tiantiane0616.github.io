@@ -1,0 +1,215 @@
+:root {
+    --bg-primary: #1a1a1a;
+    --bg-secondary: #2d2d2d;
+    --text-primary: #ffffff;
+    --accent-gold: #FFD700;
+    --accent-blue: #00B4D8;
+    --border-color: rgba(255,255,255,0.1);
+    --transition-base: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme="light"] {
+    --bg-primary: #f5f5f5;
+    --bg-secondary: #ffffff;
+    --text-primary: #333333;
+    --border-color: rgba(0,0,0,0.1);
+}
+
+body {
+    min-height: 100vh;
+    margin: 0;
+    background: linear-gradient(45deg, 
+        var(--bg-primary) 60%, 
+        var(--bg-secondary));
+    color: var(--text-primary);
+    font-family: 'Noto Sans SC', sans-serif;
+    transition: var(--transition-base);
+    overflow-x: hidden;
+}
+
+.loader {
+    position: fixed;
+    inset: 0;
+    background: var(--bg-primary);
+    display: grid;
+    place-items: center;
+    z-index: 9999;
+    opacity: 1;
+    transition: opacity 0.5s;
+}
+
+.loader-spinner {
+    width: 50px;
+    height: 50px;
+    border: 3px solid var(--accent-gold);
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+.particles-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.main-container {
+    position: relative;
+    z-index: 10;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+    opacity: 0;
+    animation: fadeIn 1s 0.5s forwards;
+}
+
+.avatar-module {
+    width: 160px;
+    height: 160px;
+    margin: 0 auto 1.5rem;
+    filter: drop-shadow(0 0 16px var(--accent-gold));
+    animation: float 6s ease-in-out infinite;
+}
+
+.avatar-image {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 3px solid var(--accent-gold);
+    background: #fff url('td.png') center/cover;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+.hero-title {
+    text-align: center;
+    margin: 0 0 2rem;
+    font-family: 'Black Han Sans', sans-serif;
+    background: linear-gradient(120deg, 
+        var(--accent-gold) 30%, 
+        var(--accent-blue) 70%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    line-height: 1.3;
+    animation: titleGlow 2s ease-in-out infinite;
+}
+
+.time-wrapper {
+    margin-bottom: 2rem;
+}
+
+.time-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+}
+
+.time-card {
+    padding: 1.5rem;
+    background: rgba(0,0,0,0.15);
+    border-radius: 16px;
+    backdrop-filter: blur(8px);
+    text-align: center;
+    transition: var(--transition-base);
+    border: 1px solid var(--border-color);
+}
+
+.time-number {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--accent-gold);
+    margin-bottom: 0.5rem;
+}
+
+.contact-card {
+    background: rgba(255,255,255,0.05);
+    border-radius: 16px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--border-color);
+}
+
+.icon-btn {
+    padding: 12px 24px;
+    border-radius: 28px;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: var(--transition-base);
+    transform: translateZ(0);
+}
+
+.wechat-btn {
+    background: linear-gradient(45deg, #09d469, #0abf53);
+    color: white;
+}
+
+.tiktok-btn {
+    background: linear-gradient(45deg, #FE2C55, #FF0050);
+    color: white;
+    text-decoration: none;
+}
+
+.friend-links {
+    position: fixed;
+    left: -200px;
+    bottom: 30px;
+    width: 240px;
+    background: rgba(0,180,216,0.1);
+    border-radius: 0 12px 12px 0;
+    transition: left 0.5s ease;
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-color);
+    padding: 1rem;
+}
+
+.friend-links:hover {
+    left: 0;
+}
+
+.copyright {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 8px 16px;
+    background: rgba(0,0,0,0.2);
+    border-radius: 12px;
+    backdrop-filter: blur(5px);
+    font-size: 0.9em;
+}
+
+@keyframes spin {
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+}
+
+@keyframes titleGlow {
+    50% { text-shadow: 0 0 20px rgba(255,215,0,0.8); }
+}
+
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+
+@media (max-width: 768px) {
+    .time-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .hero-title {
+        font-size: 1.75rem;
+    }
+    
+    .contact-card {
+        padding: 1.5rem;
+    }
+}
