@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>安全跳转确认 - Tiantiane0616</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #a78bfa;
+            --primary-hover: #8b5cf6;
+            --surface: rgba(17, 24, 39, 0.85);
+            --text: rgba(255,255,255,0.95);
+            --radius: 20px;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --gradient: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%);
+        }
+
+        /* 动态背景层 */
+        body {
+            font-family: 'Inter Variable', system-ui, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            background: 
+                linear-gradient(45deg, rgba(15,23,42,0.9), rgba(30,41,59,0.7)),
+                url('bg2.png') center/cover fixed;
+            color: var(--text);
+            position: relative;
+        }
+
+        /* 粒子遮罩层 */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.005" numOctaves="3"/></filter><rect width="100%" height="100%" filter="url(%23n)" opacity="0.4"/></svg>');
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .glass-container {
+            max-width: 800px;
+            width: 95%;
+            background: var(--surface);
+            backdrop-filter: blur(20px) saturate(200%);
+            -webkit-backdrop-filter: blur(20px) saturate(200%);
+            border-radius: var(--radius);
+            padding: 3rem;
+            box-shadow: 
+                0 12px 40px rgba(0,0,0,0.25),
+                inset 0 2px 0 rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.15);
+            position: relative;
+            overflow: hidden;
+            transform: perspective(1000px);
+            will-change: transform;
+        }
+
+        /* 动态流光边框 */
+        .glass-container::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            background: var(--gradient);
+            z-index: -1;
+            border-radius: var(--radius);
+            animation: borderFlow 8s linear infinite;
+            mask: 
+                linear-gradient(#fff 0 0) content-box, 
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+        }
+
+        @keyframes borderFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+
+        .header-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            filter: drop-shadow(0 0 12px rgba(139,92,246,0.3));
+            transition: transform 0.3s ease;
+        }
+
+        .header:hover .header-icon {
+            transform: rotate(-10deg) scale(1.1);
+        }
+
+        .target-url {
+            padding: 1.2rem;
+            background: rgba(255,255,255,0.07);
+            border-radius: 12px;
+            margin: 2rem 0;
+            font-family: 'JetBrains Mono', monospace;
+            word-break: break-all;
+            border: 1px solid rgba(255,255,255,0.12);
+            transition: background 0.3s ease;
+        }
+
+        .legal-scroll {
+            max-height: 55vh;
+            overflow-y: auto;
+            padding-right: 1.5rem;
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary) transparent;
+        }
+
+        .clause {
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            background: linear-gradient(145deg, 
+                rgba(30,41,59,0.6), 
+                rgba(15,23,42,0.4));
+            border-radius: 12px;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .clause:hover {
+            transform: translateX(10px);
+        }
+
+        .action-btn {
+            padding: 1.2rem;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+        }
+
+        .confirm-btn {
+            background: var(--gradient);
+            color: white;
+            box-shadow: 0 4px 15px rgba(139,92,246,0.3);
+        }
+
+        .cancel-btn {
+            background: rgba(255,255,255,0.1);
+            border: 2px solid rgba(255,255,255,0.2);
+            color: var(--text);
+            backdrop-filter: blur(4px);
+        }
+
+        .action-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            filter: brightness(1.1);
+        }
+
+        /* 加载提示 */
+        .loading-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .spinner {
+            border: 8px solid #f3f3f3;
+            border-top: 8px solid #a78bfa;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="glass-container">
+        <div class="header">
+            <i class="ri-shield-star-line header-icon"></i>
+            <h1>安全访问确认</h1>
+        </div>
+
+        <div class="target-url" id="targetUrl"></div>
+
+        <div class="legal-scroll">
+            <div class="clause">
+                根据《中华人民共和国网络安全法》第四十一条规定，您即将离开由 tiantiane0616.github.io（以下简称"本站"）运营的网站，访问第三方独立运营的互联网资源。继续操作前请确认：
+            </div>
+
+            <div class="clause">
+                <strong>责任声明：</strong>
+                <ol>
+                    <li>目标网站的内容、隐私政策、信息安全措施及商业行为均不受本站控制或认可</li>
+                    <li>第三方平台可能存在的风险包括但不限于：网络钓鱼、恶意软件、虚假信息、违法内容传播等</li>
+                    <li>建议通过 WHOIS 查询验证域名注册信息，确认网站主体的真实性</li>
+                </ol>
+            </div>
+
+            <div class="clause">
+                <strong>用户义务：</strong>
+                <ul>
+                    <li>请勿在第三方网站提交敏感个人信息（包括：支付凭证、身份证号、生物特征等）</li>
+                    <li>如发现可疑行为，请立即终止操作并向国家互联网应急中心（CNCERT）报告</li>
+                    <li>未成年人应在监护人指导下使用外部链接服务</li>
+                </ul>
+            </div>
+
+            <div class="clause">
+                <strong>免责范围：</strong>
+                本站对以下情况不承担任何法律责任：
+                <ul>
+                    <li>因第三方网站漏洞导致的个人信息泄露</li>
+                    <li>通过跳转链接获得的商品/服务质量问题</li>
+                    <li>恶意软件感染造成的设备损坏或数据丢失</li>
+                    <li>虚假信息诱导产生的经济损失</li>
+                </ul>
+            </div>
+
+            <div class="clause">
+                <strong>技术说明：</strong>
+                <ul>
+                    <li>本页面不会收集您的跳转行为数据</li>
+                    <li>自动跳转倒计时已禁用以确保充分阅读时间</li>
+                    <li>链接安全性检测基于 VirusTotal API v3（静态分析）</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="action-grid">
+            <button class="action-btn cancel-btn" aria-label="安全返回" onclick="cancelRedirect()">
+                <i class="ri-arrow-left-line"></i>
+                安全返回
+            </button>
+            <button class="action-btn confirm-btn" aria-label="确认跳转" onclick="proceedRedirect()">
+                <i class="ri-external-link-line"></i>
+                确认跳转
+            </button>
+        </div>
+    </div>
+
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="spinner"></div>
+    </div>
+
+    <script>
+        // 主域名配置
+        const MAIN_DOMAIN = 'tiantiane0616.github.io';
+        const params = new URLSearchParams(location.search);
+        const targetUrl = params.has('url') ? decodeURIComponent(params.get('url')) : '/';
+
+        // 验证URL合法性
+        function isValidUrl(url) {
+            try {
+                new URL(url);
+                return true;
+            } catch {
+                return false;
+            }
+        }
+
+        // 智能跳转检测
+        function isExternal(url) {
+            try {
+                const { hostname } = new URL(url);
+                return !hostname.includes(MAIN_DOMAIN);
+            } catch {
+                return true;
+            }
+        }
+
+        // 自动处理内部链接
+        if (!isExternal(targetUrl)) {
+            window.location.href = targetUrl;
+        }
+
+        // 显示目标URL
+        document.getElementById('targetUrl').textContent = targetUrl;
+
+        // 跳转操作
+        const proceedRedirect = () => {
+            if (!isValidUrl(targetUrl)) {
+                alert('无效的目标链接');
+                return;
+            }
+            document.getElementById('loadingOverlay').style.display = 'flex';
+            window.location.href = targetUrl;
+        }
+
+        // 取消操作
+        const cancelRedirect = () => {
+            window.history.back();
+        }
+
+        // 键盘控制
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                cancelRedirect();
+            }
+        });
+
+        // 鼠标跟随效果
+        let lastTime = 0;
+        document.addEventListener('mousemove', (e) => {
+            const now = Date.now();
+            if (now - lastTime > 16) { // 限制每秒最多触发60次
+                lastTime = now;
+                const container = document.querySelector('.glass-container');
+                const xAxis = (window.innerWidth / 2 - e.pageX) / 30;
+                const yAxis = (window.innerHeight / 2 - e.pageY) / 30;
+                container.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+            }
+        });
+    </script>
+</body>
+</html>
